@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no" />
+	<title>轮播</title>
+	<link type="text/css" href="slide.css" rel="stylesheet" />
+	<script src="http://runningls.com/demos/bottom_note.js"></script>
+</head>
+<body>
+
+	<ul class="slide-wrap" id="myslide">
+		<li class="slide-item slide-item-active">
+			<img src="images/00.jpg" >
+		</li>
+	</ul>
+
+	<div class="js-bottom-note">
+		功能说明 ---<b>鼠标停过来</b>--- <br/>
+		1.默认显示第一张图片。当有其他图片加载成功才初始化轮播。避免轮播功能影响网页整体性能。其他图片动态加载，不影响DOM加载。使页面尽快可交互。忽略加载失败的图片链接。<br/>
+		2.模式一全部加载完初始化。模式二加载一张即初始化。方式一无固定顺序，方式二图片顺序固定。<br/>
+		3.鼠标移动到组件上。停止轮播。移开则继续。<br/>
+		4.左右箭头 上一张 下一张。<br/>
+		5.小圆点。鼠标停留在上面500ms则切换图片。移开了则不切换。<br/>
+		6.根据加载成功的图片动态生成DOM。
+	</div>
+
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="slide.js"></script>
+	
+	<script>
+		var urls = 
+		["images/11.jpg",
+		"images/22.jpg",
+		"https://1.jpg",
+		"images/33.jpg",
+		"https://2.jpg",
+		"images/44.jpg",
+		"https://3.jpg",
+		"images/55.jpg"];
+
+
+		var config = {urls:urls,TIME:3000,DOM:"#myslide",initModel:2};
+		var slide = new Slide();
+		slide.init(config);
+
+	</script>
+</body>
