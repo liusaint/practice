@@ -1,0 +1,87 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>动态乘法表</title>
+	<script src="http://apps.bdimg.com/libs/jquery/1.8.1/jquery.min.js"></script>
+</head>
+<body>
+
+	<style>
+		ul,li{
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			width: 50px;
+			height: 30px;
+			border: 1px solid #ccc;
+			line-height: 30px;
+			float: left;
+			display: block;
+			margin: -1px 0 0 -1px;
+			text-align: center;
+			font-size: 12px;
+		}
+		p{
+			width: 100%;
+			float: left;
+			padding: 0;
+			margin: 0;
+		}
+
+	</style>
+	<ul>
+	</ul>
+
+	<script>
+		var TIME = 50;//显示与消失的时间间隔
+		var showTime = TIME;
+
+		//生成乘法表，为每一个li定好时间出现。
+		function echorow(y){
+			for(var j =1;j<=y;j++){
+
+				for(var i =1;i<= j;i++){
+					(function(){
+						var ii = i,yy = j;
+						setTimeout(function() {
+							if(ii==yy){
+								$('ul').append("<li>"+ii+"*"+yy+"="+ii*yy+"</li><p></p>");		
+							}else{
+								$('ul').append("<li>"+ii+"*"+yy+"="+ii*yy+"</li>");
+							}					
+						}, showTime);
+					})();
+					showTime+=TIME;//计时器的时间依次增加
+				}	
+			}
+
+		}
+		
+
+		//生成乘法表
+		echorow(9);
+
+
+		//所有的li都出现之后开始减少li
+		setTimeout(function() {
+			clearLast();
+		}, showTime+TIME);
+
+
+		//所有的li都出现之后开始减少li 定时清除可见的最后一个li
+		function clearLast(){
+			setTimeout(function() {
+				$("ul li:visible:last").hide();
+				if($("ul li:visible").length == 0){
+					$("ul li").show();//清除结束之后把所有的li显示出来。
+				}else{
+					clearLast();
+				}
+			}, TIME);
+		}
+
+	</script>
+</body>
+</html>
